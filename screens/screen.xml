@@ -3,6 +3,109 @@
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         require-authentication="anonymous-all">
     <widgets>
-        <label type="h1" text="Hello world!"/>
+        <!-- Create Party Dialog -->
+        <container-dialog id="CreatePartyDialog" button-text="Create Party">
+            <form-single name="CreateParty" transition="createParty">
+                <!-- Generate fields for the Party entity -->
+                <auto-fields-entity entity-name="party.package.Party" field-type="edit"/>
+
+                <!-- Custom field for partyTypeId as an input field -->
+                <field name="partyTypeId">
+                    <default-field title="Party Type">
+                        <text-line allow-empty="false"/>
+                    </default-field>
+                </field>
+
+                <!-- Submit button -->
+                <field name="submitButton">
+                    <default-field title="Create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <!-- Update Party Dialog -->
+        <container-dialog id="UpdatePartyDialog" button-text="Update Party">
+            <form-single name="UpdateParty" transition="updateParty">
+                <!-- Input field for partyId (required for update) -->
+                <field name="partyId">
+                    <default-field title="Party ID">
+                        <text-line allow-empty="false"/>
+                    </default-field>
+                </field>
+                <!-- Fields to update -->
+                <auto-fields-entity entity-name="party.package.Party" field-type="edit"/>
+
+                <!-- Submit button -->
+                <field name="submitButton">
+                    <default-field title="Update">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <!-- Delete Party Dialog -->
+        <container-dialog id="DeletePartyDialog" button-text="Delete Party">
+            <form-single name="DeleteParty" transition="deleteParty">
+                <!-- Input field for partyId (required for delete) -->
+                <field name="partyId">
+                    <default-field title="Party ID">
+                        <text-line allow-empty="false"/>
+                    </default-field>
+                </field>
+
+                <!-- Submit button -->
+                <field name="submitButton">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <!-- Find/Get Party Dialog -->
+        <container-dialog id="FindPartyDialog" button-text="Find/Get Party">
+            <form-single name="FindParty" transition="findParty">
+                <!-- Input field for partyId (required for find) -->
+                <field name="partyId">
+                    <default-field title="Party ID">
+                        <text-line allow-empty="false"/>
+                    </default-field>
+                </field>
+
+                <!-- Submit button -->
+                <field name="submitButton">
+                    <default-field title="Find">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
     </widgets>
+
+    <!-- Define the transitions to handle form submissions -->
+    <transition name="createParty">
+        <service-call name="create#party.package.Party"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="updateParty">
+        <service-call name="update#party.package.Party"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="deleteParty">
+        <service-call name="delete#party.package.Party"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="findParty">
+        <service-call name="getService.get#Party"/>
+        <parameters>
+         <parameter name="partyId" field="partyId"/>
+        </parameters>
+        <default-response url="."/>
+    </transition>
 </screen>
