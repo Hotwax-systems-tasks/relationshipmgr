@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-3.xsd">
+
+    <!-- Party Entity -->
+    <entity entity-name="Party" package="party.package">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="partyTypeId" type="id" not-null="true"/>
+        <relationship type="one" related="party.package.PartyType">
+            <key-map field-name="partyTypeId" related="partyTypeId"/>
+        </relationship>
+    </entity>
+
+    <!-- PartyType Entity -->
+    <entity entity-name="PartyType" package="party.package">
+        <field name="partyTypeId" type="id" is-pk="true"/>
+        <field name="description" type="text-short"/>
+    </entity>
+    
+    <!-- Person Entity -->
+    <entity entity-name="Person" package="party.package">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="firstName" type="text-short" not-null="true"/>
+        <field name="lastName" type="text-short" not-null="true"/>
+        <field name="birthDate" type="date"/>
+        <relationship type="one" related="party.package.Party"/>
+    </entity>
+
+    <!-- Organization Entity -->
+    <entity entity-name="Organization" package="party.package">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="organizationName" type="text-short" not-null="true"/>
+        <relationship type="one" related="party.package.Party"/>
+    </entity>
+
+    <!-- RoleType Entity -->
+    <entity entity-name="RoleType" package="party.package">
+        <field name="roleTypeId" type="id" is-pk="true"/>
+        <field name="description" type="text-short"/>
+    </entity>
+
+    <!-- PartyRole Entity -->
+    <entity entity-name="PartyRole" package="party.package">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="roleTypeId" type="id" is-pk="true"/>
+        <relationship type="one" related="party.package.RoleType"/>
+        <relationship type="one" related="party.package.Party"/>
+    </entity>
+
+    <!-- ContactMech Entity -->
+    <entity entity-name="ContactMech" package="party.package">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="contactMechTypeId" type="id" not-null="true"/>
+        <field name="infoString" type="text-long"/>
+    </entity>
+
+    <!-- PartyContactMech Entity -->
+    <entity entity-name="PartyContactMech" package="party.package">
+        <field name="partyId" type="id" is-pk="true"/>
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="fromDate" type="date" not-null="true"/>
+        <field name="thruDate" type="date"/>
+        <relationship type="one" related="party.package.Party"/>
+        <relationship type="one" related="party.package.ContactMech"/>
+    </entity>
+
+    <!-- PostalAddress Entity -->
+    <entity entity-name="PostalAddress" package="party.package">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="address1" type="text-long" not-null="true"/>
+        <field name="address2" type="text-long"/>
+        <field name="city" type="text-short" not-null="true"/>
+        <field name="postalCode" type="text-short" not-null="true"/>
+        <relationship type="one" related="party.package.ContactMech"/>
+    </entity>
+
+    <!-- TelecomNumber Entity -->
+    <entity entity-name="TelecomNumber" package="party.package">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="countryCode" type="text-short"/>
+        <field name="areaCode" type="text-short"/>
+        <field name="contactNumber" type="text-short" not-null="true"/>
+        <relationship type="one" related="party.package.ContactMech"/>
+    </entity>
+
+    <!-- EmailAddress Entity -->
+    <entity entity-name="EmailAddress" package="party.package">
+        <field name="contactMechId" type="id" is-pk="true"/>
+        <field name="emailAddress" type="text-short" not-null="true"/>
+        <relationship type="one" related="party.package.ContactMech"/>
+    </entity>
+</entities>

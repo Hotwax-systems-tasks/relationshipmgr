@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+<!-- // service for fetch the data --> 
+<service verb="get" noun="Party">
+
+<in-parameters>
+<parameter name="partyId" required="true"/>
+</in-parameters>
+<out-parameters>
+<parameter  name="partyList" required="true"/>
+
+</out-parameters>
+<actions>
+
+<entity-find entity-name="party.package.Party" list="partyList">
+
+<econdition  field-name="partyId" ignore-if-empty="true"/>
+<select-field field-name="partyId"/>
+<select-field field-name="partyTypeId"/>
+</entity-find>
+</actions>
+</service>
+</services> 
