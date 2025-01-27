@@ -2,6 +2,25 @@
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         require-authentication="anonymous-all">
+          <transition name="createParty">
+        <service-call name="create#party.package.Party"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="updateParty">
+        <service-call name="update#party.package.Party"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="deleteParty">
+        <service-call name="delete#party.package.Party"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="findParty">
+        <service-call name="getService.fetch#Party"/>
+        <default-response url="."/>
+    </transition>
     <widgets>
         <!-- Create Party Dialog -->
         <container-dialog id="CreatePartyDialog" button-text="Create Party">
@@ -12,7 +31,7 @@
                 <!-- Custom field for partyTypeId as an input field -->
                 <field name="partyTypeId">
                     <default-field title="Party Type">
-                        <text-line allow-empty="false"/>
+                        <text-line/>
                     </default-field>
                 </field>
 
@@ -31,7 +50,7 @@
                 <!-- Input field for partyId (required for update) -->
                 <field name="partyId">
                     <default-field title="Party ID">
-                        <text-line allow-empty="false"/>
+                        <text-line/>
                     </default-field>
                 </field>
                 <!-- Fields to update -->
@@ -52,7 +71,7 @@
                 <!-- Input field for partyId (required for delete) -->
                 <field name="partyId">
                     <default-field title="Party ID">
-                        <text-line allow-empty="false"/>
+                        <text-line/>
                     </default-field>
                 </field>
 
@@ -71,7 +90,7 @@
                 <!-- Input field for partyId (required for find) -->
                 <field name="partyId">
                     <default-field title="Party ID">
-                        <text-line allow-empty="false"/>
+                        <text-line/>
                     </default-field>
                 </field>
 
@@ -84,28 +103,4 @@
             </form-single>
         </container-dialog>
     </widgets>
-
-    <!-- Define the transitions to handle form submissions -->
-    <transition name="createParty">
-        <service-call name="create#party.package.Party"/>
-        <default-response url="."/>
-    </transition>
-
-    <transition name="updateParty">
-        <service-call name="update#party.package.Party"/>
-        <default-response url="."/>
-    </transition>
-
-    <transition name="deleteParty">
-        <service-call name="delete#party.package.Party"/>
-        <default-response url="."/>
-    </transition>
-
-    <transition name="findParty">
-        <service-call name="getService.get#Party"/>
-        <parameters>
-         <parameter name="partyId" field="partyId"/>
-        </parameters>
-        <default-response url="."/>
-    </transition>
 </screen>

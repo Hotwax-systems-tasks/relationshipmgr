@@ -2,7 +2,7 @@
 <moqui-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
    <screen-facade>
      <screen location="component://webroot/screen/webroot/apps.xml" >
-         <subscreens-item name="party" menu-tile="example" menu-index="97" location="component://relationshipmgr/screens/screen.xml" />
+         <subscreens-item name="party" menu-title="party" menu-index="98" location="component://relationshipmgr/screens/screen.xml" />    
      </screen>
    </screen-facade>
 </moqui-conf>
