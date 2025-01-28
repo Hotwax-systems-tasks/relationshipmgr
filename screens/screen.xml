@@ -2,40 +2,129 @@
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         require-authentication="anonymous-all">
-          <transition name="createParty">
+
+    <!-- Party Transitions -->
+    <transition name="createParty">
         <service-call name="create#party.package.Party"/>
         <default-response url="."/>
     </transition>
-
     <transition name="updateParty">
         <service-call name="update#party.package.Party"/>
         <default-response url="."/>
     </transition>
-
     <transition name="deleteParty">
         <service-call name="delete#party.package.Party"/>
         <default-response url="."/>
     </transition>
 
-    <transition name="findParty">
-        <service-call name="getService.fetch#Party"/>
+    <!-- ContactMech Transitions -->
+    <transition name="createContactMech">
+        <service-call name="create#party.package.ContactMech"/>
         <default-response url="."/>
     </transition>
+    <transition name="updateContactMech">
+        <service-call name="update#party.package.ContactMech"/>
+        <default-response url="."/>
+    </transition>
+    <transition name="deleteContactMech">
+        <service-call name="delete#party.package.ContactMech"/>
+        <default-response url="."/>
+    </transition>
+
+    <!-- PostalAddress Transitions -->
+    <transition name="createPostalAddress">
+        <service-call name="create#party.package.PostalAddress"/>
+        <default-response url="."/>
+    </transition>
+    <transition name="updatePostalAddress">
+        <service-call name="update#party.package.PostalAddress"/>
+        <default-response url="."/>
+    </transition>
+    <transition name="deletePostalAddress">
+        <service-call name="delete#party.package.PostalAddress"/>
+        <default-response url="."/>
+    </transition>
+
+    <!-- TelecomNumber Transitions -->
+    <transition name="createTelecomNumber">
+        <service-call name="create#party.package.TelecomNumber"/>
+        <default-response url="."/>
+    </transition>
+    <transition name="updateTelecomNumber">
+        <service-call name="update#party.package.TelecomNumber"/>
+        <default-response url="."/>
+    </transition>
+    <transition name="deleteTelecomNumber">
+        <service-call name="delete#party.package.TelecomNumber"/>
+        <default-response url="."/>
+    </transition>
+
+    <!-- EmailAddress Transitions -->
+    <transition name="createEmailAddress">
+        <service-call name="create#party.package.EmailAddress"/>
+        <default-response url="."/>
+    </transition>
+    <transition name="updateEmailAddress">
+        <service-call name="update#party.package.EmailAddress"/>
+        <default-response url="."/>
+    </transition>
+    <transition name="deleteEmailAddress">
+        <service-call name="delete#party.package.EmailAddress"/>
+        <default-response url="."/>
+    </transition>
+
+    <!-- Person Transitions -->
+    <transition name="createPerson">
+        <service-call name="create#party.package.Person"/>
+        <default-response url="." />
+    </transition>
+
+    <transition name="updatePerson">
+        <service-call name="update#party.package.Person"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="deletePerson">
+        <service-call name="delete#party.package.Person"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="fetchPerson">
+        <service-call name="getService.fetch#party.package.Person"/>
+        <default-response url="."/>
+    </transition>
+
+    <!-- Organization Transitions -->
+    <transition name="createOrganization">
+        <service-call name="create#party.package.Organization"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="updateOrganization">
+        <service-call name="update#party.package.Organization"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="deleteOrganization">
+        <service-call name="delete#party.package.Organization"/>
+        <default-response url="."/>
+    </transition>
+
+    <transition name="fetchOrganization">
+        <service-call name="getService.fetch#party.package.Organization"/>
+        <default-response url="."/>
+    </transition>
+
     <widgets>
-        <!-- Create Party Dialog -->
+        <!-- Party Dialogs -->
         <container-dialog id="CreatePartyDialog" button-text="Create Party">
             <form-single name="CreateParty" transition="createParty">
-                <!-- Generate fields for the Party entity -->
                 <auto-fields-entity entity-name="party.package.Party" field-type="edit"/>
-
-                <!-- Custom field for partyTypeId as an input field -->
                 <field name="partyTypeId">
                     <default-field title="Party Type">
                         <text-line/>
                     </default-field>
                 </field>
-
-                <!-- Submit button -->
                 <field name="submitButton">
                     <default-field title="Create">
                         <submit/>
@@ -44,19 +133,14 @@
             </form-single>
         </container-dialog>
 
-        <!-- Update Party Dialog -->
         <container-dialog id="UpdatePartyDialog" button-text="Update Party">
             <form-single name="UpdateParty" transition="updateParty">
-                <!-- Input field for partyId (required for update) -->
                 <field name="partyId">
                     <default-field title="Party ID">
                         <text-line/>
                     </default-field>
                 </field>
-                <!-- Fields to update -->
                 <auto-fields-entity entity-name="party.package.Party" field-type="edit"/>
-
-                <!-- Submit button -->
                 <field name="submitButton">
                     <default-field title="Update">
                         <submit/>
@@ -65,17 +149,13 @@
             </form-single>
         </container-dialog>
 
-        <!-- Delete Party Dialog -->
         <container-dialog id="DeletePartyDialog" button-text="Delete Party">
             <form-single name="DeleteParty" transition="deleteParty">
-                <!-- Input field for partyId (required for delete) -->
                 <field name="partyId">
                     <default-field title="Party ID">
                         <text-line/>
                     </default-field>
                 </field>
-
-                <!-- Submit button -->
                 <field name="submitButton">
                     <default-field title="Delete">
                         <submit/>
@@ -84,19 +164,215 @@
             </form-single>
         </container-dialog>
 
-        <!-- Find/Get Party Dialog -->
-        <container-dialog id="FindPartyDialog" button-text="Find/Get Party">
-            <form-single name="FindParty" transition="findParty">
-                <!-- Input field for partyId (required for find) -->
+        <!-- Person Dialogs -->
+        <container-dialog id="CreatePersonDialog" button-text="Create Person">
+            <form-single name="CreatePerson" transition="createPerson">
+                <auto-fields-entity entity-name="party.package.Person" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="UpdatePersonDialog" button-text="Update Person">
+            <form-single name="UpdatePerson" transition="updatePerson">
                 <field name="partyId">
-                    <default-field title="Party ID">
+                    <default-field title="Person ID">
                         <text-line/>
                     </default-field>
                 </field>
-
-                <!-- Submit button -->
+                <auto-fields-entity entity-name="party.package.Person" field-type="edit"/>
                 <field name="submitButton">
-                    <default-field title="Find">
+                    <default-field title="Update">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="DeletePersonDialog" button-text="Delete Person">
+            <form-single name="DeletePerson" transition="deletePerson">
+                <field name="partyId">
+                    <default-field title="Person ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <field name="submitButton">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <!-- Organization Dialogs -->
+        <container-dialog id="CreateOrganizationDialog" button-text="Create Organization">
+            <form-single name="CreateOrganization" transition="createOrganization">
+                <auto-fields-entity entity-name="party.package.Organization" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="UpdateOrganizationDialog" button-text="Update Organization">
+            <form-single name="UpdateOrganization" transition="updateOrganization">
+                <field name="partyId">
+                    <default-field title="Organization ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <auto-fields-entity entity-name="party.package.Organization" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Update">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="DeleteOrganizationDialog" button-text="Delete Organization">
+            <form-single name="DeleteOrganization" transition="deleteOrganization">
+                <field name="partyId">
+                    <default-field title="Organization ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <field name="submitButton">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <!-- PostalAddress Dialogs -->
+        <container-dialog id="CreatePostalAddressDialog" button-text="Create Postal Address">
+            <form-single name="CreatePostalAddress" transition="createPostalAddress">
+                <auto-fields-entity entity-name="party.package.PostalAddress" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="UpdatePostalAddressDialog" button-text="Update Postal Address">
+            <form-single name="UpdatePostalAddress" transition="updatePostalAddress">
+                <field name="contactMechId">
+                    <default-field title="Contact Mech ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <auto-fields-entity entity-name="party.package.PostalAddress" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Update">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="DeletePostalAddressDialog" button-text="Delete Postal Address">
+            <form-single name="DeletePostalAddress" transition="deletePostalAddress">
+                <field name="contactMechId">
+                    <default-field title="Contact Mech ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <field name="submitButton">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <!-- TelecomNumber Dialogs -->
+        <container-dialog id="CreateTelecomNumberDialog" button-text="Create Telecom Number">
+            <form-single name="CreateTelecomNumber" transition="createTelecomNumber">
+                <auto-fields-entity entity-name="party.package.TelecomNumber" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="UpdateTelecomNumberDialog" button-text="Update Telecom Number">
+            <form-single name="UpdateTelecomNumber" transition="updateTelecomNumber">
+                <field name="contactMechId">
+                    <default-field title="Contact Mech ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <auto-fields-entity entity-name="party.package.TelecomNumber" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Update">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="DeleteTelecomNumberDialog" button-text="Delete Telecom Number">
+            <form-single name="DeleteTelecomNumber" transition="deleteTelecomNumber">
+                <field name="contactMechId">
+                    <default-field title="Contact Mech ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <field name="submitButton">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <!-- EmailAddress Dialogs -->
+        <container-dialog id="CreateEmailAddressDialog" button-text="Create Email Address">
+            <form-single name="CreateEmailAddress" transition="createEmailAddress">
+                <auto-fields-entity entity-name="party.package.EmailAddress" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="UpdateEmailAddressDialog" button-text="Update Email Address">
+            <form-single name="UpdateEmailAddress" transition="updateEmailAddress">
+                <field name="contactMechId">
+                    <default-field title="Contact Mech ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <auto-fields-entity entity-name="party.package.EmailAddress" field-type="edit"/>
+                <field name="submitButton">
+                    <default-field title="Update">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+        <container-dialog id="DeleteEmailAddressDialog" button-text="Delete Email Address">
+            <form-single name="DeleteEmailAddress" transition="deleteEmailAddress">
+                <field name="contactMechId">
+                    <default-field title="Contact Mech ID">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <field name="submitButton">
+                    <default-field title="Delete">
                         <submit/>
                     </default-field>
                 </field>
