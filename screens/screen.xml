@@ -3,7 +3,6 @@
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
         require-authentication="anonymous-all">
 
-    <!-- Party Transitions -->
     <transition name="createParty">
         <service-call name="create#party.package.Party"/>
         <default-response url="."/>
@@ -17,7 +16,6 @@
         <default-response url="."/>
     </transition>
 
-    <!-- ContactMech Transitions -->
     <transition name="createContactMech">
         <service-call name="create#party.package.ContactMech"/>
         <default-response url="."/>
@@ -31,7 +29,6 @@
         <default-response url="."/>
     </transition>
 
-    <!-- PostalAddress Transitions -->
     <transition name="createPostalAddress">
         <service-call name="create#party.package.PostalAddress"/>
         <default-response url="."/>
@@ -45,7 +42,6 @@
         <default-response url="."/>
     </transition>
 
-    <!-- TelecomNumber Transitions -->
     <transition name="createTelecomNumber">
         <service-call name="create#party.package.TelecomNumber"/>
         <default-response url="."/>
@@ -59,7 +55,6 @@
         <default-response url="."/>
     </transition>
 
-    <!-- EmailAddress Transitions -->
     <transition name="createEmailAddress">
         <service-call name="create#party.package.EmailAddress"/>
         <default-response url="."/>
@@ -73,7 +68,6 @@
         <default-response url="."/>
     </transition>
 
-    <!-- Person Transitions -->
     <transition name="createPerson">
         <service-call name="create#party.package.Person"/>
         <default-response url="." />
@@ -94,7 +88,6 @@
         <default-response url="."/>
     </transition>
 
-    <!-- Organization Transitions -->
     <transition name="createOrganization">
         <service-call name="create#party.package.Organization"/>
         <default-response url="."/>
@@ -116,7 +109,6 @@
     </transition>
 
     <widgets>
-        <!-- Party Dialogs -->
         <container-dialog id="CreatePartyDialog" button-text="Create Party">
             <form-single name="CreateParty" transition="createParty">
                 <auto-fields-entity entity-name="party.package.Party" field-type="edit"/>
@@ -163,8 +155,6 @@
                 </field>
             </form-single>
         </container-dialog>
-
-        <!-- Person Dialogs -->
         <container-dialog id="CreatePersonDialog" button-text="Create Person">
             <form-single name="CreatePerson" transition="createPerson">
                 <auto-fields-entity entity-name="party.package.Person" field-type="edit"/>
@@ -206,8 +196,6 @@
                 </field>
             </form-single>
         </container-dialog>
-
-        <!-- Organization Dialogs -->
         <container-dialog id="CreateOrganizationDialog" button-text="Create Organization">
             <form-single name="CreateOrganization" transition="createOrganization">
                 <auto-fields-entity entity-name="party.package.Organization" field-type="edit"/>
@@ -249,8 +237,6 @@
                 </field>
             </form-single>
         </container-dialog>
-
-        <!-- PostalAddress Dialogs -->
         <container-dialog id="CreatePostalAddressDialog" button-text="Create Postal Address">
             <form-single name="CreatePostalAddress" transition="createPostalAddress">
                 <auto-fields-entity entity-name="party.package.PostalAddress" field-type="edit"/>
@@ -292,8 +278,6 @@
                 </field>
             </form-single>
         </container-dialog>
-
-        <!-- TelecomNumber Dialogs -->
         <container-dialog id="CreateTelecomNumberDialog" button-text="Create Telecom Number">
             <form-single name="CreateTelecomNumber" transition="createTelecomNumber">
                 <auto-fields-entity entity-name="party.package.TelecomNumber" field-type="edit"/>
@@ -335,8 +319,6 @@
                 </field>
             </form-single>
         </container-dialog>
-
-        <!-- EmailAddress Dialogs -->
         <container-dialog id="CreateEmailAddressDialog" button-text="Create Email Address">
             <form-single name="CreateEmailAddress" transition="createEmailAddress">
                 <auto-fields-entity entity-name="party.package.EmailAddress" field-type="edit"/>
